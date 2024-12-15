@@ -10,3 +10,9 @@ resourcePolicy:
           effect: EFFECT_ALLOW
           roles:
               - "admin"
+          output:
+              when:
+                  ruleActivated: |-
+                      {"principal": P, "resource": R, "message": "ruleActivated message"}
+                  conditionNotMet: |-
+                      {"principal": P, "resource": R, "message": "conditionNotMet message"}
