@@ -1,0 +1,19 @@
+---
+apiVersion: api.cerbos.dev/v1
+resourcePolicy:
+    version: "default"
+    # importDerivedRoles:
+    #     - common_roles
+    resource: "assessments"
+    rules:
+        - actions: ["update", "get"]
+          effect: EFFECT_ALLOW
+          condition:
+              match:
+                  expr: request.resource.attr.isPrincipalSuperRole == true
+          output:
+              when:
+                  ruleActivated: |-
+                      {"principal": P, "resource": R, "message": "ruleActivated message"}
+                  conditionNotMet: |-
+                      {"principal": P, "resource": R, "message": "conditionNotMet message"}
