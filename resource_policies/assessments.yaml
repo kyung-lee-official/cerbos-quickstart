@@ -8,6 +8,7 @@ resourcePolicy:
     rules:
         - actions: ["update", "get"]
           effect: EFFECT_ALLOW
+          roles: ["admin"]
           condition:
               match:
                   expr: request.resource.attr.isPrincipalSuperRole == true
